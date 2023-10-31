@@ -21,10 +21,12 @@ export default class Level {
     this._updateLevel = updateLevel;
     this._level = 100;
     this._generateNumberBtn = document.querySelector('.level__generate-btn');
+    this._refreshBtn = document.querySelector('.level__refresh-btn');
     this._levelHandler = document.querySelector('.level')
     this._randomNumber = 0;
     this._numberSubmitted = false;
     this._updateRandomNumber = updateRandomNumber;
+    this._generateStatus = document.querySelector('.level__generate-info');
   }
 
   //update slider value by user
@@ -64,19 +66,31 @@ export default class Level {
 
   _submitNumber() {
     if (this._numberSubmitted) {
-      this._generateNumberBtn.textContent = 'Загадать число';
-      this._levelHandler.classList.remove('level_submitted');
-      this._toggleELemetsActivity(false);
-      this._numberSubmitted = false;
-      this._randomNumber = 0;
+      this.clearData();
     } else {
       this._randomNumber = this._generateRandomNumber(1, this._level);
       this._generateNumberBtn.textContent = 'Изменить число';
       this._levelHandler.classList.add('level_submitted');
+      this._generateStatus.textContent = 'Число загадано';
       this._toggleELemetsActivity(true);
       this._numberSubmitted = true;
     }
     this._updateRandomNumber(this._randomNumber);
+  }
+
+  clearData() {
+    this._generateNumberBtn.textContent = 'Загадать число';
+    this._levelHandler.classList.remove('level_submitted');
+    this._toggleELemetsActivity(false);
+    this._numberSubmitted = false;
+    this._randomNumber = 0;
+  }
+
+  startOver() {
+    this._generateStatus.textContent = 'Число обновлено. Попытки сброшены';
+    this._randomNumber = this._generateRandomNumber(1, this._level);
+    this._updateRandomNumber(this._randomNumber);
+    //clearattempts
   }
 
   setEventListeners() {
@@ -99,6 +113,7 @@ export default class Level {
     })
 
     this._generateNumberBtn.addEventListener('click', () => this._submitNumber());
+    this._refreshBtn.addEventListener('click', () => this.startOver());
 
   }
 

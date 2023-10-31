@@ -1,6 +1,8 @@
 
+import { declineWithNumerals } from '../assets/utils/declineWithNumerals';
+
 export default class Game {
-  constructor (renderConfetti) {
+  constructor (renderConfetti, droppGame) {
     this._intervalElement = document.querySelector('.answer__interval-end');
     this._answerValueElement = document.querySelector('.asnwer__value');
     this._submitBtn = document.querySelector('.answer__sbt-btn');
@@ -11,6 +13,7 @@ export default class Game {
     this._randomNumber = 0;
     this._attempts = 0;
     this._renderConfetti = renderConfetti;
+    this._droppGame = droppGame;
   }
 
   updateInterval(value) {
@@ -20,6 +23,10 @@ export default class Game {
 
   updateRandomNumber(value) {
     this._randomNumber = value;
+    this.droppAttempts();
+  }
+
+  droppAttempts() {
     this._attempts = 0;
   }
 
@@ -46,8 +53,10 @@ export default class Game {
       }
 
     } else if (randomNumber === userNumber) {
+      const attemts = declineWithNumerals(this._attempts, ['попытка', 'попытки', 'попыток']);
       this._resultBox.classList.add('answer__result-box_success', 'answer__result-box_active');
-      this._resultText.textContent = `Верно! Число: ${randomNumber}. Вам потребовалось: 3 попытки`;
+      this._resultText.textContent = `Верно! Число: ${randomNumber}. Вам потребовалось: ${this._attempts} ${attemts}.
+      Чтобы начать заново - просто нажмите кнопку "Загадать число"`;
     }
   }
 
@@ -64,11 +73,14 @@ export default class Game {
       this._attempts++;
     }
 
+    this._handleResultBox(this._randomNumber, this._userNumber)
+
+    //if answer correct: show confetti and clear attempts
     if (this._userNumber > 0 && this._userNumber === this._randomNumber) {
       this._renderConfetti();
+      this._droppGame();
     }
 
-    this._handleResultBox(this._randomNumber, this._userNumber)
     this._userNumber = undefined;
     this._answerValueElement.value = '';
   }

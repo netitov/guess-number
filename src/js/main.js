@@ -3,9 +3,8 @@ import Level from './level';
 import Game from './game';
 import { renderConfetti } from './confetti';
 
-
 const gameLevel = new Level(updateLevel, updateRandomNumber);
-const game = new Game(renderConfetti);
+const game = new Game(renderConfetti, droppGame);
 
 gameLevel.setEventListeners();
 game.setEventListeners();
@@ -19,7 +18,10 @@ function updateRandomNumber(value) {
   game.clearResultBox();
 }
 
-//renderConfetti();
+function droppGame() {
+  gameLevel.clearData();
+}
+
 
 
 
