@@ -46,10 +46,12 @@ export default class Game {
 
     } else if (randomNumber !== userNumber) {
       this._resultBox.classList.add('answer__result-box_warning', 'answer__result-box_active');
+      const isEven = randomNumber % 2 === 0 ? "четное" : "нечетное";
+      const hint = this._attempts % 3 === 0 ? `. Подсказка: загаданное число - ${isEven}` : '';
       if (userNumber < randomNumber) {
-        this._resultText.textContent = `Попытка ${this._attempts}: ваше число (${userNumber}) меньше загаданного`;
+        this._resultText.textContent = `Попытка ${this._attempts}: ваше число (${userNumber}) меньше загаданного${hint}`;
       } else {
-        this._resultText.textContent = `Попытка ${this._attempts}: ваше число (${userNumber}) больше загаданного`;
+        this._resultText.textContent = `Попытка ${this._attempts}: ваше число (${userNumber}) больше загаданного${hint}`;
       }
 
     } else if (randomNumber === userNumber) {
@@ -73,9 +75,9 @@ export default class Game {
       this._attempts++;
     }
 
-    this._handleResultBox(this._randomNumber, this._userNumber)
+    this._handleResultBox(this._randomNumber, this._userNumber);
 
-    //if answer correct: show confetti and clear attempts
+    //if answer correct: show confetti and dropp game
     if (this._userNumber > 0 && this._userNumber === this._randomNumber) {
       this._renderConfetti();
       this._droppGame();
@@ -91,7 +93,7 @@ export default class Game {
     this._answerValueElement.addEventListener('input', () => {
       const value = Number(this._answerValueElement.value);
       this.clearResultBox();
-      if (value > 0) {
+      if (value > 0 && value <= this._level) {
         this._submitBtn.classList.add('answer__sbt-btn_active');
       } else {
         this._submitBtn.classList.remove('answer__sbt-btn_active');

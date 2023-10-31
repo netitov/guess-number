@@ -29,7 +29,7 @@ export default class Level {
     this._generateStatus = document.querySelector('.level__generate-info');
   }
 
-  //update slider value by user
+  //handle game level sider (input:range)
   _handleSeeking(value) {
     const valuePercentage = (value / this._slider.max) * 100 - 5;
     this._slider.style.background = `linear-gradient(to right, #ffd766 ${valuePercentage}%, #77777754 ${valuePercentage}%)`;
@@ -57,6 +57,7 @@ export default class Level {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  //toggle dislable inputs and buttons
   _toggleELemetsActivity(value) {
     this._slider.disabled = value;
     this._sliderEndElement.disabled = value;
@@ -64,6 +65,7 @@ export default class Level {
     this._levelBtn.forEach(i => i.disabled = value);
   }
 
+  //submit selected level and generate number
   _submitNumber() {
     if (this._numberSubmitted) {
       this.clearData();
@@ -90,21 +92,24 @@ export default class Level {
     this._generateStatus.textContent = 'Число обновлено. Попытки сброшены';
     this._randomNumber = this._generateRandomNumber(1, this._level);
     this._updateRandomNumber(this._randomNumber);
-    //clearattempts
   }
 
   setEventListeners() {
 
+    //handle slier
     this._slider.addEventListener('input', (e) => this._handleSeeking(e.target.value));
 
+    //handle number input
     this._sliderEndElement.addEventListener('input', (e) => this._handleSeeking(e.target.value));
 
+    //limit number input
     this._sliderEndElement.addEventListener('blur', (e) => {
       const value = e.target.value;
       if (value > 1000) this._handleSeeking(1000);
       if (value < 100) this._handleSeeking(100);
     })
 
+    //handle game level via level buttons
     this._levelBtn.reverse().forEach((i, index) => {
       i.addEventListener('click', () => {
         const value = this._levelBtnInterval[index].min;
@@ -112,7 +117,10 @@ export default class Level {
       })
     })
 
+    //handle number generation
     this._generateNumberBtn.addEventListener('click', () => this._submitNumber());
+
+    //handle game refresh
     this._refreshBtn.addEventListener('click', () => this.startOver());
 
   }
