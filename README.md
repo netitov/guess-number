@@ -4,7 +4,7 @@
 
 Try to guess the random number
 
-View the project: <>
+View the project: <https://netitov.github.io/guess-number/>
 
 ### Features and content
 
