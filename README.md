@@ -1,12 +1,16 @@
-# Calorie-calculator
+# Guess the number
 
-![Project image](https://github.com/netitov/calorie-calculator/blob/master/src/assets/img/site-logo.png)
+![Project image](https://github.com/netitov/guess-number/blob/main/src/assets/img/site-logo.png)
+
+Try to guess the random number
 
 View the project: <>
 
 ### Features and content
 
+1. Manage level
 
+2. Get a hint
 
 ## Setup
 

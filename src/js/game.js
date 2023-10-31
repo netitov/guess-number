@@ -69,8 +69,6 @@ export default class Game {
   }
 
   _submitAnswer() {
-    console.log(this._userNumber, this._randomNumber)
-
     if (this._userNumber > 0 && this._randomNumber > 0) {
       this._attempts++;
     }
