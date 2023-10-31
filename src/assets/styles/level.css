@@ -1,10 +1,12 @@
 .level {
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 15px;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 0px 4px #00000012;
 }
 
 .level__seek-slider {
@@ -12,6 +14,15 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  transition: opacity 0.3s;
+}
+
+.level_submitted .level__seek-slider {
+  opacity: 0.6;
+}
+
+.level_submitted .level__seek-slider-value {
+  cursor: auto;
 }
 
 .level__seek-slider-value {
@@ -56,11 +67,11 @@
   width: 39px;
 }
 
-.level__value-end::-webkit-inner-spin-button,
-.level__value-end::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* Убрать отступы */
 }
 
 .level__btn-box {
@@ -69,18 +80,95 @@
   flex-wrap: wrap;
 }
 
+.level_submitted .level__btn-box {
+  opacity: 0.6;
+}
+
 .level__btn {
   color: #747474;
   font-size: 15px;
-  cursor: pointer;
   transition: all 0.3s;
   padding: 3px 5px;
   border-radius: 10px;
 }
 
-.level__btn_active, .level__btn:hover {
+.level__btn_active, .level:not(.level_submitted) .level__btn:hover {
   background-color: #e9e9e9;
   color: #454242;
+  cursor: pointer;
+}
+
+.level__generate-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.level__generate-btn-box {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.level__generate-btn {
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 3px 7px;
+  background-color: #ffdb76;
+  border-radius: 10px;
+  min-width: 137px;
+}
+
+.level__generate-btn:hover {
+  background-color: #f6c743;
+}
+
+.level__refresh-btn {
+  padding: 5px;
+  border-radius: 15px;
+  transition: all 0.3s;
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  right: -144px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  align-items: center;
+  gap: 5px;
+}
+
+.level_submitted .level__refresh-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.level__refresh-btn:hover {
+  background-color: #f2f2f2;
+}
+
+.level__refresh-btn > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.level__refresh-btn > svg path {
+  fill: #454242;
+}
+
+.level__generate-info{
+  color: #747474;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.level_submitted .level__generate-info {
+  opacity: 1;
 }
 
 
