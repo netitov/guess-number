@@ -1,0 +1,45 @@
+.page {
+  font-family: 'Noto Sans Display', sans-serif;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 1300px;
+  color: #454242;
+  margin: auto;
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page__heading {
+  margin: 0;
+  font-weight: 400;
+  color: #64625b;
+}
+
+.page__logo {
+
+}
+
+.page__description-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+  font-size: 19px;
+}
+
+.page__description {
+  margin: 0;
+}
+
+.page__description > span {
+  color: #fff;
+  background-color: #ffcc3e;
+}
+

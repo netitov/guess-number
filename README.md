@@ -2,17 +2,10 @@
 
 ![Project image](https://github.com/netitov/calorie-calculator/blob/master/src/assets/img/site-logo.png)
 
-View the project: <https://netitov.github.io/calorie-calculator/>
+View the project: <>
 
 ### Features and content
 
-1. Add/delete products
-
-2. Add goals on every day
-
-3. Search products
-
-4. Charts with dynamic
 
 
 ## Setup

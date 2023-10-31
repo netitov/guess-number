@@ -4,7 +4,9 @@
   "description": "![Project image](https://github.com/netitov/calorie-calculator/blob/master/src/assets/img/site-logo.png)",
   "main": "babel.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",

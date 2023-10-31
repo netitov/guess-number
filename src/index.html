@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Guess the number</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100;200;300;400&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="page">
+
+      <header class="page__header">
+        <img src="<%=require('./assets/img/logo.png')%>" class="page__logo">
+        <h1 class="page__heading">Guess the number</h1>
+      </header>
+
+      <div class="page__description-box">
+        <p class="page__description">Проверь свою интуицию</p>
+        <p class="page__description">Попробуй угадать <span>случайной число</span></p>
+      </div>
+
+      <div class="page__level level">
+        <span>Для начала выбери уровень сложности (диапазон случайного числа)</span>
+        <div class="level__seek-slider">
+          <input type="range" min="100" max="1000" value="100" class="level__seek-slider-value">
+          <div>
+            от <span class="level__value level__value-start">1</span>
+            <!-- до <span class="level__value level__value-end">100</span> -->
+            до <input type="number" min="100" max="1000" value="100" class="level__value level__value-end">
+          </div>
+
+        </div>
+        <div class="level__btn-box">
+          <button class="level__btn level__btn_active" type="button">Начинающий</button>
+          <button class="level__btn" type="button">Продвинутый</button>
+          <button class="level__btn" type="button">Экстрасенс</button>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>
